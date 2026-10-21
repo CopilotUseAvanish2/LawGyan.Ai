@@ -1,0 +1,86 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ed">
+  <title>LawGyan.ai — Indian law, made clearer</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap");
+  </style>
+  <link rel="stylesheet" href="{% static 'legal_chat/styles.css' %}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="LawGyan.ai home">
+        <span class="brand-mark">LG</span>
+        <span class="brand-name">LawGyan<span class="brand-period">.ai</span><small>INDIA LEGAL GUIDE</small></span>
+      </a>
+      <button class="new-chat" id="new-chat" type="button"><span aria-hidden="true">＋</span> New conversation</button>
+      <div class="side-label">YOUR SPACE</div>
+      <button class="history-item active" type="button"><span class="history-dot"></span>Legal guidance</button>
+      <div class="side-bottom">
+        <div class="privacy-note"><span class="lock-icon" aria-hidden="true">⌑</span><div><strong>Your privacy matters</strong><p>This demo does not save chat history.</p></div></div>
+        <a class="about-link" href="https://nalsa.gov.in/" target="_blank" rel="noreferrer">Legal aid in India <span aria-hidden="true">↗</span></a>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">LG</span> LawGyan<span class="brand-period">.ai</span></div>
+        <div class="topbar-context"><span class="status-dot"></span> INDIAN LAW · GENERAL GUIDANCE</div>
+        <button class="text-button" id="clear-chat" type="button" title="Clear conversation">Clear chat <span aria-hidden="true">↺</span></button>
+      </header>
+
+      <section class="chat-stage" aria-label="Legal guidance chat">
+        <div class="welcome" id="welcome">
+          <div class="welcome-kicker"><span class="kicker-line"></span> A CLEARER FIRST STEP <span class="kicker-line"></span></div>
+          <h1>Law can feel complicated.<br><em>Let's make it clearer.</em></h1>
+          <p class="welcome-copy">Tell me what happened. I’ll help you understand the issue, organise your next steps, and find the right place to turn.</p>
+          <div class="suggestion-grid" aria-label="Try asking about">
+            <button class="suggestion" type="button" data-prompt="My landlord is refusing to return my security deposit. What should I do?">
+              <span class="suggestion-icon coral">⌂</span><span><strong>Rent &amp; housing</strong><small>Deposit, notice, repairs</small></span><span class="suggestion-arrow">↗</span>
+            </button>
+            <button class="suggestion" type="button" data-prompt="I paid for a product online but it arrived damaged and the seller won't help.">
+              <span class="suggestion-icon green">◈</span><span><strong>Consumer issues</strong><small>Refunds, products, services</small></span><span class="suggestion-arrow">↗</span>
+            </button>
+            <button class="suggestion" type="button" data-prompt="Someone called pretending to be my bank and I lost money through UPI.">
+              <span class="suggestion-icon blue">⌁</span><span><strong>Online safety</strong><small>Fraud, threats, accounts</small></span><span class="suggestion-arrow">↗</span>
+            </button>
+            <button class="suggestion" type="button" data-prompt="My employer has not paid my salary. What steps can I take?">
+              <span class="suggestion-icon yellow">▤</span><span><strong>Work &amp; employment</strong><small>Pay, conduct, contracts</small></span><span class="suggestion-arrow">↗</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="messages" id="messages" aria-live="polite" aria-label="Conversation"></div>
+        <div class="typing-row hidden" id="typing" aria-live="polite"><span class="typing-mark">LG</span><span class="typing-dots"><i></i><i></i><i></i></span><span>Thinking through your question</span></div>
+      </section>
+
+      <footer class="composer-wrap">
+        <form class="composer" id="chat-form">
+          {% csrf_token %}
+          <label class="visually-hidden" for="message-input">Describe your legal question</label>
+          <textarea id="message-input" name="message" rows="1" maxlength="2000" placeholder="Describe what happened..." required></textarea>
+          <div class="composer-bottom"><span class="input-hint">Avoid names or sensitive personal details</span><button class="send-button" id="send-button" type="submit" aria-label="Send message" title="Send message"><span aria-hidden="true">↑</span></button></div>
+        </form>
+        <p class="disclaimer">LawGyan.ai shares general information, not legal advice pertaining to our Indian Subcontinent. <a href="https://nalsa.gov.in/" target="_blank" rel="noreferrer">Need a lawyer? Find legal aid ↗</a></p>
+      </footer>
+    </main>
+
+    <aside class="right-rail" aria-label="About this guidance">
+      <div class="rail-topline">HOW I CAN HELP <span class="rail-spark">✳</span></div>
+      <p class="rail-intro">A starting point,<br>not the final word.</p>
+      <div class="rail-rule"></div>
+      <div class="rail-step"><span>01</span><div><strong>Understand</strong><p>Identify the area of law your situation may involve.</p></div></div>
+      <div class="rail-step"><span>02</span><div><strong>Prepare</strong><p>Get practical steps and know what to keep on record.</p></div></div>
+      <div class="rail-step"><span>03</span><div><strong>Connect</strong><p>Find official resources or qualified local support.</p></div></div>
+      <div class="rail-emergency"><span class="emergency-icon">!</span><div><strong>In immediate danger?</strong><p>Call <a href="tel:112">112</a> for emergency assistance in India.</p></div></div>
+      <div class="rail-footer">BUILT FOR CLARITY <span>·</span> INDIA</div>
+    </aside>
+  </div>
+  <script src="{% static 'legal_chat/chat.js' %}" defer></script>
+</body>
+</html>
